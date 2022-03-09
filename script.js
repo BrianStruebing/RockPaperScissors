@@ -2,7 +2,7 @@
 const paragraph = document.getElementById("scoreMessage");
 const rockButton = document.getElementById("rockBtn");
 const paperButton = document.getElementById("paperBtn");
-const scissor = document.getElementById("scissorBtn");
+const scissorButton = document.getElementById("scissorBtn");
 // const playerSelection = prompt("Choose between 'Rock', 'Paper' or 'Scissors'");
 const playerSign = document.getElementById("playerSign");
 const ComputerSign = document.getElementById("computerSign");
@@ -14,15 +14,19 @@ let playerScore = 0;
 let computerScore = 0;
 let gameWinner = "";
 
+rockButton.addEventListener("click", () => handleClick("ROCK"));
+paperButton.addEventListener("click", () => handleClick("PAPER"));
+scissorButton.addEventListener("click", () => handleClick("SCISSOR"));
 
 
 function computerPlay (){
-    const computerChoice = ["Rock", "Paper", "Scissor"];
+    const computerChoice = ["ROCK", "PAPER", "SCISSOR"];
     const computerSel = computerChoice[Math.floor(Math.random() * computerChoice.length)]
     return computerSel;
 }
 
-const playerSelection = "Rock"
+
+
 
 
 
@@ -46,16 +50,18 @@ function playRound(computerSelection, playerSelection){
         gameWinner = "tie"
     }
     else if (
-        (playerSelection === "Rock" && computerSelection === "Paper") ||
-        (playerSelection === "Paper" && computerSelection === "Rock") ||
-        (playerSelection === "Scissor" && computerSelection === "Rock")
+        (playerSelection === "ROCK" && computerSelection === "PAPER") ||
+        (playerSelection === "PAPER" && computerSelection === "ROCK") ||
+        (playerSelection === "SCISSOR" && computerSelection === "ROCK") ||
+        (playerSelection === "PAPER" && computerSelection === "SCISSOR")
     ){
         computerScore++;
         gameWinner = "computer";
     } else if (
-        (computerSelection === "Rock" && playerSelection === "Paper") ||
-        (computerSelection === "Paper" && playerSelection === "Rock") ||
-        (computerSelection === "Scissor" && playerSelection === "Rock")
+        (computerSelection === "ROCK" && playerSelection === "PAPER") ||
+        (computerSelection === "PAPER" && playerSelection === "ROCK") ||
+        (computerSelection === "SCISSOR" && playerSelection === "ROCK") ||
+        (computerSelection === "PAPER" && playerSelection === "SCISSOR")
     ){
         playerScore++;
         gameWinner = "player";
@@ -79,7 +85,7 @@ function updateScore (){
     computerScorePara.textContent = `Computer: ${computerScore}`;
 }
 
-function handleClick (){
+function handleClick (playerSelection){
     const computerSelection = computerPlay();
     playRound(computerSelection, playerSelection);
     updateScore();
