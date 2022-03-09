@@ -50,7 +50,10 @@ function resetGame(){
         computerScorePara.textContent = `Computer: ${computerScore}`;
         playerScorePara.textContent = `Player: ${playerScore}`;
         scoreInfo.textContent = "Game has been reset!"
-    
+        paragraph.textContent = "";
+        rockButton.disabled = false;
+        paperButton.disabled = false;
+        scissorButton.disabled = false;
 }
 
 
@@ -63,7 +66,6 @@ function playRound(computerSelection, playerSelection){
     }
     else if (
         (playerSelection === "ROCK" && computerSelection === "PAPER") ||
-        (playerSelection === "PAPER" && computerSelection === "ROCK") ||
         (playerSelection === "SCISSOR" && computerSelection === "ROCK") ||
         (playerSelection === "PAPER" && computerSelection === "SCISSOR")
     ){
@@ -71,7 +73,6 @@ function playRound(computerSelection, playerSelection){
         gameWinner = "computer";
     } else if (
         (computerSelection === "ROCK" && playerSelection === "PAPER") ||
-        (computerSelection === "PAPER" && playerSelection === "ROCK") ||
         (computerSelection === "SCISSOR" && playerSelection === "ROCK") ||
         (computerSelection === "PAPER" && playerSelection === "SCISSOR")
     ){
@@ -85,13 +86,16 @@ function playRound(computerSelection, playerSelection){
 
 
 // Checks who the gameWinner is and updates the scoreInfo and Score accordingly
-function updateScore (){
+function updateScore (playerSelection, computerSelection){
     if (gameWinner === "tie"){
         scoreInfo.textContent = "Its a Tie";
+        paragraph.textContent = `You both choose ${playerSelection}`;
     } else if (gameWinner === "player"){
         scoreInfo.textContent = "You Win!";
+        paragraph.textContent = `The Computer choose ${computerSelection}`;
     } else if (gameWinner === "computer"){
         scoreInfo.textContent = "The computer wins!";
+        paragraph.textContent = `The Computer choose ${computerSelection}`;
     }
 
     
@@ -105,7 +109,7 @@ function updateScore (){
 function handleClick (playerSelection){
     const computerSelection = computerPlay();
     playRound(computerSelection, playerSelection);
-    updateScore();
+    updateScore(playerSelection, computerSelection);
     isGameFinished();
     console.log(playerSelection, computerSelection)
     
