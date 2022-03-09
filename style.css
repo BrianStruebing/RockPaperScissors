@@ -44,6 +44,11 @@ header {
     background-color: #49475B;
 }
 
+.btn:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
 
 
 .score-message, .sign {

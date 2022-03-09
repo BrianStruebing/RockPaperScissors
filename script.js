@@ -1,7 +1,7 @@
 
 const paragraph = document.getElementById("scoreMessage");
-const rock = document.getElementById("rockBtn");
-const paper = document.getElementById("paperBtn");
+const rockButton = document.getElementById("rockBtn");
+const paperButton = document.getElementById("paperBtn");
 const scissor = document.getElementById("scissorBtn");
 // const playerSelection = prompt("Choose between 'Rock', 'Paper' or 'Scissors'");
 const playerSign = document.getElementById("playerSign");
@@ -23,13 +23,27 @@ function computerPlay (){
 }
 
 const playerSelection = "Rock"
-const computerSelection = computerPlay();
+
+
+
+function resetGame(){
+
+    if (playerScore === 5 || computerScore === 5){
+        computerScore = 0;
+        playerScore = 0;
+        computerScorePara.textContent = `Computer: ${computerScore}`;
+        playerScorePara.textContent = `Player: ${playerScore}`;
+        scoreInfo.textContent = "Game has been reset!"
+    }
+}
+
+
 
 
 function playRound(computerSelection, playerSelection){
 
-    if(playerSelection == computerSelection){
-        gameWinner = "Tie"
+    if(playerSelection === computerSelection){
+        gameWinner = "tie"
     }
     else if (
         (playerSelection === "Rock" && computerSelection === "Paper") ||
@@ -47,7 +61,7 @@ function playRound(computerSelection, playerSelection){
         gameWinner = "player";
     }
 
-    updateScore();
+    
 
 }       
 
@@ -63,11 +77,20 @@ function updateScore (){
 
     playerScorePara.textContent = `Player: ${playerScore}`;
     computerScorePara.textContent = `Computer: ${computerScore}`;
-
-
 }
 
-console.log(playRound(computerSelection, playerSelection))
+function handleClick (){
+    const computerSelection = computerPlay();
+    playRound(computerSelection, playerSelection);
+    updateScore();
+    console.log(playerSelection, computerSelection)
+    
+    
+}
+
+
+paperButton.addEventListener("click", resetGame)
+rockButton.addEventListener("click", handleClick);
 
 
 
