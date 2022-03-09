@@ -11,6 +11,7 @@ const playerScorePara = document.getElementById("playerScore");
 const computerScorePara = document.getElementById("computerScore");
 const resetButton = document.getElementById("resetBtn");
 
+
 let playerScore = 0;
 let computerScore = 0;
 let gameWinner = "";
@@ -27,11 +28,18 @@ function computerPlay (){
     return computerSel;
 }
 
+ function disableButtons() {
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorButton.disabled = true;
+}
+
 
 // Checks if the game winning score has been reached
 function isGameFinished (){
     if (playerScore === 5 || computerScore === 5){
         scoreInfo.textContent = `The Game is over, the ${gameWinner} wins!`;
+        disableButtons();
     } 
 }
 
