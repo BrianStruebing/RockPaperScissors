@@ -74,15 +74,17 @@ function playRound(computerSelection, playerSelection){
 
 function updateScore (){
     if (gameWinner === "tie"){
-        scoreInfo.textContent = "Its a Tie!";
+        scoreInfo.textContent = "Its a Tie";
     } else if (gameWinner === "player"){
         scoreInfo.textContent = "You Win!";
     } else if (gameWinner === "computer"){
         scoreInfo.textContent = "The computer wins!";
     }
 
+    
     playerScorePara.textContent = `Player: ${playerScore}`;
     computerScorePara.textContent = `Computer: ${computerScore}`;
+    
 }
 
 function handleClick (playerSelection){
@@ -94,10 +96,7 @@ function handleClick (playerSelection){
     
 }
 
-
-paperButton.addEventListener("click", resetGame)
-rockButton.addEventListener("click", handleClick);
-
+resetGame();
 
 
 
